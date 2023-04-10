@@ -1,0 +1,32 @@
+import { build, emptyDir } from "https://deno.land/x/dnt/mod.ts";
+
+await emptyDir("./npm");
+
+await build({
+  importMap: "import-map.json",
+  entryPoints: ["./mod.ts"],
+  outDir: "./npm",
+  shims: {
+    // see JS docs for overview and more options
+    deno: true,
+  },
+  package: {
+    // package.json properties
+    name: "finance-data-lib",
+    version: Deno.args[0],
+    description: "A shared data library for the Pocket finance app.",
+    license: "MIT",
+    repository: {
+      type: "git",
+      url: "git+https://github.com/username/repo.git",
+    },
+    bugs: {
+      url: "https://github.com/username/repo/issues",
+    },
+  },
+  postBuild() {
+    // steps to run after building and before running the tests
+    // Deno.copyFileSync("LICENSE", "npm/LICENSE");
+    // Deno.copyFileSync("README.md", "npm/README.md");
+  },
+});
