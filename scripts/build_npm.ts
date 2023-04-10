@@ -18,11 +18,11 @@ await build({
     license: "MIT",
     repository: {
       type: "git",
-      url: "git+https://github.com/username/repo.git",
+      url: "https://github.com/jongood01/finance-data-lib",
     },
-    bugs: {
-      url: "https://github.com/username/repo/issues",
-    },
+    // bugs: {
+    //   url: "https://github.com/username/repo/issues",
+    // },
   },
   postBuild() {
     // steps to run after building and before running the tests
