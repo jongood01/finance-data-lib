@@ -1,6 +1,6 @@
-#Finance Data Library
+# Finance Data Library
 
-##Making changes
+## Making changes
 
-When the code changes are complete, commit and push them then run
+When the code changes are complete; make sure you commit and push them then run
 `export VERSION=0.1.1 && deno task build:deploy` where the env variable is the new version number.
