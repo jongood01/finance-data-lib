@@ -19,9 +19,6 @@ await build({
       type: "git",
       url: "https://github.com/jongood01/finance-data-lib",
     },
-    scripts: {
-      "artifactregistry-login": "npx google-artifactregistry-auth",
-    },
     // bugs: {
     //   url: "https://github.com/username/repo/issues",
     // },
