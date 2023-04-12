@@ -9,7 +9,6 @@
     "build": "deno run -A scripts/build_npm.ts $VERSION",
     "deploy": "cd npm && npm publish",
     "build:deploy": "deno task tag && deno task build && deno task deploy",
-    "cache": "deno cache mod.ts"
-  },
-  "importMap": "import-map.json"
+    "cache": "deno cache src/mod.ts"
+  }
 }

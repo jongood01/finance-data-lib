@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "~data/accounts": "./data/accounts/index.ts",
-    "~deps": "./deps.ts"
-  }
-}
