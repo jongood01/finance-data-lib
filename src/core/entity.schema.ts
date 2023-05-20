@@ -6,6 +6,6 @@ export const EntitySchema = z.object({
   createdByDisplayName: z.string().nullable(),
   deletedAt: z.date().nullable(),
   deletedById: z.string().nullable(),
-  updatedAt: z.string(),
+  updatedAt: z.date(),
   updatedById: z.string().nullable(),
 });
