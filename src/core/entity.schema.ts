@@ -1,6 +1,6 @@
 import { z } from "../deps.ts";
 
-export const BaseModel = z.object({
+export const EntitySchema = z.object({
   createdAt: z.date(),
   createdById: z.string().nullable(),
   createdByDisplayName: z.string().nullable(),

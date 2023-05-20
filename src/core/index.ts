@@ -1,1 +1,1 @@
-export * from "./base.model.ts";
+export * from "./entity.schema.ts";

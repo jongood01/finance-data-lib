@@ -1,7 +1,7 @@
-import { BaseModel } from "../core/index.ts";
+import { EntitySchema } from "../core/index.ts";
 import { z } from "../deps.ts";
 
-export const UserModel = BaseModel.extend({
+export const userBase = {
   email: z
     .string({
       required_error: "Email is required",
@@ -23,6 +23,9 @@ export const UserModel = BaseModel.extend({
     })
     .min(5, { message: "Your password needs to be at least 5 characters long" })
     .max(100, { message: "Passwords can be no more than 100 characters long" }),
-});
+};
 
-export type User = z.infer<typeof UserModel>;
+export const UserBaseSchema = z.object(userBase);
+export const UserSchema = EntitySchema.extend(userBase);
+export type UserBase = z.infer<typeof UserBaseSchema>;
+export type User = z.infer<typeof UserSchema>;
