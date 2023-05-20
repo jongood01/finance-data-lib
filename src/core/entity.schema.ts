@@ -1,6 +1,7 @@
-import { z } from "../deps.ts";
+import { ObjectId, z } from "../deps.ts";
 
 export const EntitySchema = z.object({
+  id: z.string(),
   createdAt: z.date(),
   createdById: z.string().nullable(),
   createdByDisplayName: z.string().nullable(),
@@ -9,3 +10,5 @@ export const EntitySchema = z.object({
   updatedAt: z.date(),
   updatedById: z.string().nullable(),
 });
+
+export type WithObjectId = { _id: ObjectId };

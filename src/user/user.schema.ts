@@ -1,3 +1,4 @@
+import { WithObjectId } from "../core/entity.schema.ts";
 import { EntitySchema } from "../core/index.ts";
 import { z } from "../deps.ts";
 
@@ -28,4 +29,5 @@ export const userBase = {
 export const UserBaseSchema = z.object(userBase);
 export const UserSchema = EntitySchema.extend(userBase);
 export type UserBase = z.infer<typeof UserBaseSchema>;
-export type User = z.infer<typeof UserSchema>;
+type RawUser = z.infer<typeof UserSchema>;
+export type User = RawUser & WithObjectId;
