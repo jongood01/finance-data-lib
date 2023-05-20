@@ -1,7 +1,7 @@
-import { EntityModel } from "../core/index.ts";
+import { EntitySchema } from "../core/index.ts";
 import { z } from "../deps.ts";
 
-export const AccountModel = EntityModel.extend({
+export const AccountModel = EntitySchema.extend({
   name: z
     .string({
       required_error: "Account name is required",
