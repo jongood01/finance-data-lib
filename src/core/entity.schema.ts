@@ -1,4 +1,4 @@
-import { ObjectId, z } from "../deps.ts";
+import { z } from "../deps.ts";
 
 export const EntitySchema = z.object({
   id: z.string(),
@@ -11,4 +11,5 @@ export const EntitySchema = z.object({
   updatedById: z.string().nullable(),
 });
 
-export type WithObjectId = { _id: ObjectId };
+// We use the any type here as it will only be used for Mongodb ids
+export type WithObjectId = { _id: any };
