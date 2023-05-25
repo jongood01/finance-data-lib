@@ -5,4 +5,5 @@ export type LoginResponse = {
   token: string;
 };
 
+export const LoginRequestSchema = { ...CredentialsSchema };
 export type LoginRequest = z.infer<typeof CredentialsSchema>;
