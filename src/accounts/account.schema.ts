@@ -1,7 +1,7 @@
-import { EntitySchema } from "../core/index.ts";
+import { EntitySchema, WithObjectId } from "../core/index.ts";
 import { z } from "../deps.ts";
 
-export const AccountModel = EntitySchema.extend({
+export const accountBase = {
   name: z
     .string({
       required_error: "Account name is required",
@@ -15,6 +15,12 @@ export const AccountModel = EntitySchema.extend({
   openingBalance: z.number(),
   openingBalanceAt: z.date(),
   type: z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]),
-});
+};
 
-export type Account = z.infer<typeof AccountModel>;
+export const CreateAccountRequestSchema = z.object(accountBase);
+export const AccountBaseSchema = z.object(accountBase);
+export const AccountSchema = EntitySchema.extend(accountBase);
+export type AccountBase = z.infer<typeof AccountBaseSchema>;
+export type CreateAccountRequest = z.infer<typeof CreateAccountRequestSchema>;
+type RawAccount = z.infer<typeof AccountSchema>;
+export type Account = RawAccount & WithObjectId;
