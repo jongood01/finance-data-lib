@@ -26,8 +26,8 @@ export const userBase = {
     .max(100, { message: "Passwords can be no more than 100 characters long" }),
 };
 
-export const UserBaseSchema = z.object(userBase);
-export const UserSchema = EntitySchema.extend(userBase);
+export const UserBaseSchema = z.object(userBase).strict();
+export const UserSchema = EntitySchema.extend(userBase).strict();
 export type UserBase = z.infer<typeof UserBaseSchema>;
 type RawUser = z.infer<typeof UserSchema>;
 export type User = RawUser & WithObjectId;

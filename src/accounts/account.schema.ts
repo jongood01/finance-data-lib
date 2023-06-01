@@ -17,9 +17,9 @@ export const accountBase = {
   type: z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]),
 };
 
-export const CreateAccountRequestSchema = z.object(accountBase);
-export const AccountBaseSchema = z.object(accountBase);
-export const AccountSchema = EntitySchema.extend(accountBase);
+export const CreateAccountRequestSchema = z.object(accountBase).strict();
+export const AccountBaseSchema = z.object(accountBase).strict();
+export const AccountSchema = EntitySchema.extend(accountBase).strict();
 export type AccountBase = z.infer<typeof AccountBaseSchema>;
 export type CreateAccountRequest = z.infer<typeof CreateAccountRequestSchema>;
 type RawAccount = z.infer<typeof AccountSchema>;
