@@ -24,3 +24,4 @@ export type AccountBase = z.infer<typeof AccountBaseSchema>;
 export type CreateAccountRequest = z.infer<typeof CreateAccountRequestSchema>;
 type RawAccount = z.infer<typeof AccountSchema>;
 export type Account = RawAccount & WithObjectId;
+export type CreateAccountResponse = Account;
