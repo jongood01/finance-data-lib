@@ -17,7 +17,12 @@ export const accountBase = {
   type: z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]),
 };
 
-export const CreateAccountRequestSchema = z.object(accountBase).strict();
+export const accountRequestBase = {
+  ...accountBase,
+  openingBalance: z.string(),
+};
+
+export const CreateAccountRequestSchema = z.object(accountRequestBase).strict();
 export const AccountBaseSchema = z.object(accountBase).strict();
 export const AccountSchema = EntitySchema.extend(accountBase).strict();
 export type AccountBase = z.infer<typeof AccountBaseSchema>;
