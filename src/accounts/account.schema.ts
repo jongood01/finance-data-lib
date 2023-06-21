@@ -19,7 +19,7 @@ export const accountBase = {
 
 export const accountRequestBase = {
   ...accountBase,
-  openingBalanceAt: z.string(),
+  openingBalanceAt: z.string().datetime(),
 };
 
 export const CreateAccountRequestSchema = z.object(accountRequestBase).strict();
