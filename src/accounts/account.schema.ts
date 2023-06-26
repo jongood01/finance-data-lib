@@ -1,6 +1,8 @@
 import { EntitySchema, WithObjectId } from "../core/index.ts";
 import { z } from "../deps.ts";
 
+const accountType = z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]);
+
 export const accountBase = {
   name: z
     .string({
@@ -16,7 +18,7 @@ export const accountBase = {
   openingBalanceAt: z.date({
     required_error: "Opening balance at must be a valid date",
   }),
-  type: z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]),
+  type: accountType,
 };
 
 export const accountRequestBase = {
@@ -31,6 +33,7 @@ export const AccountBaseSchema = z.object(accountBase).strict();
 export const AccountSchema = EntitySchema.extend(accountBase).strict();
 export type AccountBase = z.infer<typeof AccountBaseSchema>;
 export type CreateAccountRequest = z.infer<typeof CreateAccountRequestSchema>;
+export type AccountType = z.infer<typeof accountType>;
 type RawAccount = z.infer<typeof AccountSchema>;
 export type Account = RawAccount & WithObjectId;
 export type CreateAccountResponse = Account;
