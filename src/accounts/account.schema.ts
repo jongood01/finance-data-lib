@@ -13,13 +13,17 @@ export const accountBase = {
     }),
   description: z.string().nullable(),
   openingBalance: z.number(),
-  openingBalanceAt: z.date(),
+  openingBalanceAt: z.date({
+    required_error: "Opening balance at must be a valid date",
+  }),
   type: z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]),
 };
 
 export const accountRequestBase = {
   ...accountBase,
-  openingBalanceAt: z.string().datetime(),
+  openingBalanceAt: z
+    .string()
+    .datetime({ message: "Opening balance at must be a valid date string" }),
 };
 
 export const CreateAccountRequestSchema = z.object(accountRequestBase).strict();

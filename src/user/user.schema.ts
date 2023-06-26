@@ -24,6 +24,15 @@ export const userBase = {
     })
     .min(5, { message: "Your password needs to be at least 5 characters long" })
     .max(100, { message: "Passwords can be no more than 100 characters long" }),
+  timezone: z
+    .string({
+      required_error: "Timezone is required",
+      invalid_type_error: "Timezone must be a string",
+    })
+    .regex(
+      /([a-zA-Z]{3,})\/[a-zA-Z]{3,}/,
+      "Must be a valid timezone like Pacific/Auckland"
+    ),
 };
 
 export const UserBaseSchema = z.object(userBase).strict();
