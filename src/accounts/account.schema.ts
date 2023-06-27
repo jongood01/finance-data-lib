@@ -13,6 +13,10 @@ export const accountBase = {
     .max(100, {
       message: "Account name must be no longer than 100 characters long",
     }),
+  color: z.string({
+    required_error: "Account color is required",
+    invalid_type_error: "Account color must be a string",
+  }),
   description: z.string().nullable(),
   openingBalance: z.number(),
   openingBalanceAt: z.date({
