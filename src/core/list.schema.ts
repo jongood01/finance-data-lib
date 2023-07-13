@@ -6,6 +6,11 @@ export const ListRequestSchema = z.object({
       invalid_type_error: "filter must be a string",
     })
     .nullable(),
+  filterValue: z
+    .string({
+      invalid_type_error: "filter value must be a string",
+    })
+    .nullable(),
   page: z
     .number({
       required_error: "page is required",
