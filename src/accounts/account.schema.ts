@@ -1,3 +1,4 @@
+import { WithSlug } from "../core/entity.schema.ts";
 import { EntitySchema, WithObjectId } from "../core/index.ts";
 import { z } from "../deps.ts";
 
@@ -39,5 +40,5 @@ export type AccountBase = z.infer<typeof AccountBaseSchema>;
 export type CreateAccountRequest = z.infer<typeof CreateAccountRequestSchema>;
 export type AccountType = z.infer<typeof accountType>;
 type RawAccount = z.infer<typeof AccountSchema>;
-export type Account = RawAccount & WithObjectId;
+export type Account = RawAccount & WithObjectId & WithSlug;
 export type CreateAccountResponse = Account;
