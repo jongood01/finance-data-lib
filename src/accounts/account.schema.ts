@@ -3,7 +3,7 @@ import { z } from "../deps.ts";
 
 const accountType = z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]);
 
-export const accountBase = {
+export const accountRequestBase = {
   name: z
     .string({
       required_error: "Account name is required",
@@ -19,21 +19,21 @@ export const accountBase = {
   }),
   description: z.string().nullable(),
   openingBalance: z.number(),
-  openingBalanceAt: z.date({
-    required_error: "Opening balance at must be a valid date",
-  }),
+  openingBalanceAt: z
+    .string()
+    .datetime({ message: "Opening balance at must be a valid date string" }),
+  type: accountType,
+};
+
+export const accountBase = {
+  ...accountRequestBase,
   slug: z.string({
     required_error: "Account slug is required",
     invalid_type_error: "Account cslug must be a string",
   }),
-  type: accountType,
-};
-
-export const accountRequestBase = {
-  ...accountBase,
-  openingBalanceAt: z
-    .string()
-    .datetime({ message: "Opening balance at must be a valid date string" }),
+  openingBalanceAt: z.date({
+    required_error: "Opening balance at must be a valid date",
+  }),
 };
 
 export const CreateAccountRequestSchema = z.object(accountRequestBase).strict();
