@@ -13,5 +13,4 @@ export const EntitySchema = z.object({
 
 // We use the any type here as it will only be used for Mongodb ids
 export type WithObjectId = { _id: any };
-export type WithSlug = { slug: string };
 export type CreatedByUserInfo = { id: string; name: string };

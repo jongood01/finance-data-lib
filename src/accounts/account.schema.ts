@@ -1,4 +1,3 @@
-import { WithSlug } from "../core/entity.schema.ts";
 import { EntitySchema, WithObjectId } from "../core/index.ts";
 import { z } from "../deps.ts";
 
@@ -23,6 +22,10 @@ export const accountBase = {
   openingBalanceAt: z.date({
     required_error: "Opening balance at must be a valid date",
   }),
+  slug: z.string({
+    required_error: "Account slug is required",
+    invalid_type_error: "Account cslug must be a string",
+  }),
   type: accountType,
 };
 
@@ -40,5 +43,5 @@ export type AccountBase = z.infer<typeof AccountBaseSchema>;
 export type CreateAccountRequest = z.infer<typeof CreateAccountRequestSchema>;
 export type AccountType = z.infer<typeof accountType>;
 type RawAccount = z.infer<typeof AccountSchema>;
-export type Account = RawAccount & WithObjectId & WithSlug;
+export type Account = RawAccount & WithObjectId;
 export type CreateAccountResponse = Account;
