@@ -29,7 +29,7 @@ export const accountBase = {
   ...accountRequestBase,
   slug: z.string({
     required_error: "Account slug is required",
-    invalid_type_error: "Account cslug must be a string",
+    invalid_type_error: "Account slug must be a string",
   }),
   openingBalanceAt: z.date({
     required_error: "Opening balance at must be a valid date",
@@ -45,3 +45,12 @@ export type AccountType = z.infer<typeof accountType>;
 type RawAccount = z.infer<typeof AccountSchema>;
 export type Account = RawAccount & WithObjectId;
 export type CreateAccountResponse = Account;
+export type AccountResponse = Omit<
+  Account,
+  "openingBalanceAt" | "createdAt" | "updatedAt" | "deletedAt"
+> & {
+  openingBalanceAt: string;
+  createdAt: string;
+  updatedAt: string | null;
+  deletedAt: string | null;
+};
