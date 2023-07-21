@@ -1,9 +1,13 @@
-import { EntitySchema, WithObjectId } from "../core/index.ts";
+import {
+  EntitySchema,
+  MapObjectDatesToStrings,
+  WithObjectId,
+} from "../core/index.ts";
 import { z } from "../deps.ts";
 
 const accountType = z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]);
 
-export const accountRequestBase = {
+export const accountExternalBase = {
   name: z
     .string({
       required_error: "Account name is required",
@@ -26,7 +30,7 @@ export const accountRequestBase = {
 };
 
 export const accountBase = {
-  ...accountRequestBase,
+  ...accountExternalBase,
   slug: z.string({
     required_error: "Account slug is required",
     invalid_type_error: "Account slug must be a string",
@@ -36,21 +40,18 @@ export const accountBase = {
   }),
 };
 
-export const CreateAccountRequestSchema = z.object(accountRequestBase).strict();
+export const AccountExternalSchema = z.object(accountExternalBase).strict();
+export const CreateAccountRequestSchema = z
+  .object(accountExternalBase)
+  .strict();
 export const AccountBaseSchema = z.object(accountBase).strict();
 export const AccountSchema = EntitySchema.extend(accountBase).strict();
 export type AccountBase = z.infer<typeof AccountBaseSchema>;
-export type CreateAccountRequest = z.infer<typeof CreateAccountRequestSchema>;
 export type AccountType = z.infer<typeof accountType>;
 type RawAccount = z.infer<typeof AccountSchema>;
 export type Account = RawAccount & WithObjectId;
+export type AccountExternal = z.infer<typeof AccountExternalSchema>;
 export type CreateAccountResponse = Account;
-export type AccountResponse = Omit<
-  Account,
-  "openingBalanceAt" | "createdAt" | "updatedAt" | "deletedAt"
-> & {
-  openingBalanceAt: string;
-  createdAt: string;
-  updatedAt: string | null;
-  deletedAt: string | null;
-};
+export type CreateAccountRequest = z.infer<typeof AccountExternalSchema>;
+export type AccountResponse = MapObjectDatesToStrings<Account>;
+export type UpdateAccountRequest = AccountResponse;

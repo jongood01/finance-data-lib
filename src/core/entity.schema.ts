@@ -14,3 +14,8 @@ export const EntitySchema = z.object({
 // We use the any type here as it will only be used for Mongodb ids
 export type WithObjectId = { _id: any };
 export type CreatedByUserInfo = { id: string; name: string };
+
+export type MapDateKeyToString<T> = T extends Date ? string : T;
+export type MapObjectDatesToStrings<T> = {
+  [PropertyKey in keyof T]: MapDateKeyToString<T[PropertyKey]>;
+};
