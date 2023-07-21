@@ -54,4 +54,4 @@ export type AccountExternal = z.infer<typeof AccountExternalSchema>;
 export type CreateAccountResponse = Account;
 export type CreateAccountRequest = z.infer<typeof AccountExternalSchema>;
 export type AccountResponse = MapObjectDatesToStrings<Account>;
-export type UpdateAccountRequest = AccountResponse;
+export type UpdateAccountRequest = AccountExternal & WithObjectId;
