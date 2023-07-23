@@ -41,9 +41,6 @@ export const accountBase = {
 };
 
 export const AccountExternalSchema = z.object(accountExternalBase).strict();
-export const CreateAccountRequestSchema = z
-  .object(accountExternalBase)
-  .strict();
 export const AccountBaseSchema = z.object(accountBase).strict();
 export const AccountSchema = EntitySchema.extend(accountBase).strict();
 export type AccountBase = z.infer<typeof AccountBaseSchema>;
@@ -51,7 +48,19 @@ export type AccountType = z.infer<typeof accountType>;
 type RawAccount = z.infer<typeof AccountSchema>;
 export type Account = RawAccount & WithObjectId;
 export type AccountExternal = z.infer<typeof AccountExternalSchema>;
+export const CreateAccountRequestSchema = z
+  .object(accountExternalBase)
+  .strict();
+export const UpdateAccountRequestSchema = z
+  .object({
+    ...accountExternalBase,
+    id: z.string({
+      required_error: "Account id is required",
+      invalid_type_error: "Account id must be a string",
+    }),
+  })
+  .strict();
 export type CreateAccountResponse = Account;
 export type CreateAccountRequest = z.infer<typeof AccountExternalSchema>;
 export type AccountResponse = MapObjectDatesToStrings<Account>;
-export type UpdateAccountRequest = AccountExternal & WithObjectId;
+export type UpdateAccountRequest = z.infer<typeof UpdateAccountRequestSchema>;
