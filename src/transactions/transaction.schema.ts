@@ -35,6 +35,14 @@ export const transactionExternalBase = {
   transactionDate: z
     .string()
     .datetime({ message: "Transaction date at must be a valid date string" }),
+  notes: z
+    .string({
+      invalid_type_error: "Transaction notes must be a string",
+    })
+    .max(500, {
+      message: "Transaction notes must be no longer than 500 characters long",
+    })
+    .nullable(),
 };
 
 export const transactionBase = {
