@@ -24,12 +24,12 @@ export const transactionExternalBase = {
     }),
   amountIn: z
     .number()
-    .positive()
+    .nonnegative()
     .max(999999)
     .step(0.01, { message: "Amount in must be a valid decimal" }),
   amountOut: z
     .number()
-    .positive()
+    .nonnegative()
     .max(999999)
     .step(0.01, { message: "Amount out must be a valid decimal" }),
   transactionDate: z
