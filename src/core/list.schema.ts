@@ -32,6 +32,12 @@ export const ListRequestSchema = z.object({
     .nullable(),
   sort: z.string(),
   sortDirection: z.enum(["ASC", "DESC"]),
+  trashed: z
+    .number({
+      invalid_type_error: "trashed must be a number",
+    })
+    .min(0)
+    .max(1),
 });
 
 export type ListRequest = z.infer<typeof ListRequestSchema>;
