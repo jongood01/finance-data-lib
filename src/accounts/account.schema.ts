@@ -31,6 +31,10 @@ export const accountExternalBase = {
 
 export const accountBase = {
   ...accountExternalBase,
+  balance: z.number({
+    required_error: "Account balance is required",
+    invalid_type_error: "Account balance must be a number",
+  }),
   slug: z.string({
     required_error: "Account slug is required",
     invalid_type_error: "Account slug must be a string",
