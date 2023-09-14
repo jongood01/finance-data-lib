@@ -5,7 +5,7 @@ import {
 } from "../core/index.ts";
 import { z } from "../deps.ts";
 
-const budgetType = z.enum(["Income", "Expense", "Saving"]);
+const budgetType = z.enum(["Income", "Expense", "Savings"]);
 
 export const budgetExternalBase = {
   name: z

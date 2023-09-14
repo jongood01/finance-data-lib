@@ -9,4 +9,5 @@ export type {
   CreatedByUserInfo,
   ListRequest,
   ListResponse,
+  MapObjectDatesToStrings,
 } from "./src/core/index.ts";
