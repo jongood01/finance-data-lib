@@ -76,3 +76,4 @@ export type CreateBudgetResponse = Budget;
 export type CreateBudgetRequest = z.infer<typeof BudgetExternalSchema>;
 export type BudgetResponse = MapObjectDatesToStrings<Budget>;
 export type UpdateBudgetRequest = z.infer<typeof UpdateBudgetRequestSchema>;
+export type BudgetSummary = Pick<Budget, "id" | "name" | "color" | "type">;
