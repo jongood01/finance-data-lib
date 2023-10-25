@@ -47,6 +47,11 @@ export const transactionExternalBase = {
 
 export const transactionBase = {
   ...transactionExternalBase,
+  amountAllocated: z
+    .number()
+    .nonnegative()
+    .max(999999)
+    .step(0.01, { message: "Amount allocated must be a valid decimal" }),
   transactionDate: z.date({
     required_error: "Transaction date at must be a valid date",
   }),
