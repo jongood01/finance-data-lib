@@ -36,6 +36,7 @@ export const budgetEntryExternalBase = {
     .nonnegative()
     .max(999999)
     .step(0.01, { message: "Amount out must be a valid decimal" }),
+  entryType: z.enum(["income", "expense"]),
   entryDate: z
     .string()
     .datetime({ message: "Budget entry date at must be a valid date string" }),
