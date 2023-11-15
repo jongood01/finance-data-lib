@@ -52,7 +52,7 @@ export const budgetEntryExternalBase = {
 
 export const budgetEntryBase = {
   ...budgetEntryExternalBase,
-  budgetEntryDate: z.date({
+  entryDate: z.date({
     required_error: "Budget entry date at must be a valid date",
   }),
 };
