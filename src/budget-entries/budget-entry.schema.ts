@@ -82,16 +82,17 @@ export type AllocateIncomeBudgetEntryRequest = {
   incomeBudgetEntry: z.infer<typeof BudgetEntryExternalSchema>;
   expenseBudgetEntries: z.infer<typeof BudgetEntryExternalSchema>[];
 };
-export type AllocateIncomeBudgetEntryResponse = {
-  incomeResult: BudgetEntry;
-  expenseResults: BudgetEntry[];
-};
 export type AllocateExpenseBudgetEntryRequest = z.infer<
   typeof BudgetEntryExternalSchema
 >[];
-export type AllocateExpenseBudgetEntryResponse = BudgetEntry[];
 
 export type BudgetEntryResponse = MapObjectDatesToStrings<BudgetEntry>;
+export type AllocateIncomeBudgetEntryResponse = {
+  incomeResult: BudgetEntryResponse;
+  expenseResults: BudgetEntryResponse[];
+};
+export type AllocateExpenseBudgetEntryResponse = BudgetEntryResponse[];
+
 export type UpdateBudgetEntryRequest = z.infer<
   typeof UpdateBudgetEntryRequestSchema
 >;
