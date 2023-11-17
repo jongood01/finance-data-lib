@@ -83,7 +83,7 @@ export type CreateBudgetEntryRequest = z.infer<
   typeof BudgetEntryExternalSchema
 >;
 export type AllocateIncomeBudgetEntryRequest = {
-  incomeBudgetEntries: z.infer<typeof BudgetEntryExternalSchema>[];
+  incomeBudgetEntry: z.infer<typeof BudgetEntryExternalSchema>;
   expenseBudgetEntries: z.infer<typeof BudgetEntryExternalSchema>[];
 };
 export type AllocateExpenseBudgetEntryRequest = z.infer<
