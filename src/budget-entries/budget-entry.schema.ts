@@ -66,7 +66,9 @@ export type BudgetEntryBase = z.infer<typeof BudgetEntryBaseSchema>;
 type RawBudgetEntry = z.infer<typeof BudgetEntrySchema>;
 export type BudgetEntry = RawBudgetEntry & WithObjectId;
 export type BudgetEntryExternal = z.infer<typeof BudgetEntryExternalSchema>;
-
+export const CreateBudgetEntrySchema = z
+  .object(budgetEntryExternalBase)
+  .strict();
 export const UpdateBudgetEntryRequestSchema = z
   .object({
     ...budgetEntryExternalBase,
