@@ -78,19 +78,19 @@ export const UpdateBudgetEntryRequestSchema = z
     }),
   })
   .strict();
-export type AllocateIncomeBudgetEntryRequest = {
-  incomeBudgetEntry: z.infer<typeof BudgetEntryExternalSchema>;
-  expenseBudgetEntries: z.infer<typeof BudgetEntryExternalSchema>[];
-};
+export type AllocateIncomeBudgetEntryRequest = z.infer<
+  typeof BudgetEntryExternalSchema
+>;
+export type AllocateIncomeExpenseBudgetEntryRequest = z.infer<
+  typeof BudgetEntryExternalSchema
+>[];
 export type AllocateExpenseBudgetEntryRequest = z.infer<
   typeof BudgetEntryExternalSchema
 >[];
 
 export type BudgetEntryResponse = MapObjectDatesToStrings<BudgetEntry>;
-export type AllocateIncomeBudgetEntryResponse = {
-  incomeResult: BudgetEntryResponse;
-  expenseResults: BudgetEntryResponse[];
-};
+export type AllocateIncomeBudgetEntryResponse = BudgetEntryResponse;
+export type AllocateIncomeExpenseBudgetEntryResponse = BudgetEntryResponse[];
 export type AllocateExpenseBudgetEntryResponse = BudgetEntryResponse[];
 
 export type UpdateBudgetEntryRequest = z.infer<
