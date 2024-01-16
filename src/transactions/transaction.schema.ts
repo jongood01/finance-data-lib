@@ -60,15 +60,45 @@ export const transactionBase = {
   }),
 };
 
+export const transactionSummary = {
+  description: z
+    .string({
+      required_error: "Transaction description is required",
+      invalid_type_error: "Transaction description must be a string",
+    })
+    .min(5, {
+      message: "Transaction description must be at least 5 characters long",
+    })
+    .max(200, {
+      message:
+        "Transaction description must be no longer than 200 characters long",
+    }),
+  amountIn: z
+    .number()
+    .nonnegative()
+    .max(999999)
+    .step(0.01, { message: "Amount in must be a valid decimal" }),
+  amountOut: z
+    .number()
+    .nonnegative()
+    .max(999999)
+    .step(0.01, { message: "Amount out must be a valid decimal" }),
+  transactionDate: z
+    .string()
+    .datetime({ message: "Transaction date at must be a valid date string" }),
+};
+
 export const TransactionExternalSchema = z
   .object(transactionExternalBase)
   .strict();
 export const TransactionBaseSchema = z.object(transactionBase).strict();
 export const TransactionSchema = EntitySchema.extend(transactionBase).strict();
+export const TransactionSummarySchema = z.object(transactionSummary).strict();
 export type TransactionBase = z.infer<typeof TransactionBaseSchema>;
 type RawTransaction = z.infer<typeof TransactionSchema>;
 export type Transaction = RawTransaction & WithObjectId;
 export type TransactionExternal = z.infer<typeof TransactionExternalSchema>;
+export type TransactionSummary = z.infer<typeof TransactionSummarySchema>;
 export const CreateTransactionRequestSchema = z
   .object(transactionExternalBase)
   .strict();
