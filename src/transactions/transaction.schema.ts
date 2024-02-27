@@ -61,6 +61,7 @@ export const transactionBase = {
 };
 
 export const transactionSummary = {
+  index: z.number().nonnegative(),
   description: z
     .string({
       required_error: "Transaction description is required",
