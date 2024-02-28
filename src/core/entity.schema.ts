@@ -19,3 +19,5 @@ export type MapDateKeyToString<T> = T extends Date ? string : T;
 export type MapObjectDatesToStrings<T> = {
   [PropertyKey in keyof T]: MapDateKeyToString<T[PropertyKey]>;
 };
+
+export type Entity = z.infer<typeof EntitySchema>;
