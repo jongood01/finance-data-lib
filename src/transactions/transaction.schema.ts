@@ -120,3 +120,8 @@ export type TransactionResponse = MapObjectDatesToStrings<Transaction>;
 export type UpdateTransactionRequest = z.infer<
   typeof UpdateTransactionRequestSchema
 >;
+
+export type IndexedTransactionResult = Array<{
+  index: number;
+  result: Transaction[];
+}>;
