@@ -64,15 +64,16 @@ export const transactionSummary = {
   index: z.number().nonnegative(),
   description: z
     .string({
-      required_error: "Transaction description is required",
-      invalid_type_error: "Transaction description must be a string",
+      required_error: "Transaction summary description is required",
+      invalid_type_error: "Transaction summary description must be a string",
     })
     .min(5, {
-      message: "Transaction description must be at least 5 characters long",
+      message:
+        "Transaction summary description must be at least 5 characters long",
     })
     .max(200, {
       message:
-        "Transaction description must be no longer than 200 characters long",
+        "Transaction summary description must be no longer than 200 characters long",
     }),
   amountIn: z
     .number()
@@ -86,7 +87,18 @@ export const transactionSummary = {
     .step(0.01, { message: "Amount out must be a valid decimal" }),
   transactionDate: z
     .string()
-    .datetime({ message: "Transaction date at must be a valid date string" }),
+    .datetime({
+      message: "Transaction summary date at must be a valid date string",
+    }),
+  notes: z
+    .string({
+      invalid_type_error: "Transaction summary notes must be a string",
+    })
+    .max(500, {
+      message:
+        "Transaction summary notes must be no longer than 500 characters long",
+    })
+    .nullable(),
 };
 
 export const TransactionExternalSchema = z
