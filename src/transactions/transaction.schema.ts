@@ -121,7 +121,9 @@ export type UpdateTransactionRequest = z.infer<
   typeof UpdateTransactionRequestSchema
 >;
 
-export type IndexedTransactionResult = Array<{
+export type IndexedTransaction = {
   index: number;
   result: Transaction[];
-}>;
+};
+
+export type IndexedTransactionResult = IndexedTransaction[];
