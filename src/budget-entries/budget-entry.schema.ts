@@ -78,6 +78,25 @@ export const UpdateBudgetEntryRequestSchema = z
     }),
   })
   .strict();
+
+export const BudgetEntryTransferSchema = z
+  .object({
+    amount: z
+      .number()
+      .nonnegative()
+      .max(999999)
+      .step(0.01, { message: "Amount in must be a valid decimal" }),
+    fromBudgetId: z.string({
+      required_error: "From budget id is required",
+      invalid_type_error: "From budget id needs to be a valid string",
+    }),
+    toBudgetId: z.string({
+      required_error: "To budget id is required",
+      invalid_type_error: "To budget id needs to be a valid string",
+    }),
+  })
+  .strict();
+
 export type AllocateIncomeBudgetEntryRequest = z.infer<
   typeof BudgetEntryExternalSchema
 >;
@@ -87,6 +106,8 @@ export type AllocateIncomeExpenseBudgetEntryRequest = z.infer<
 export type AllocateExpenseBudgetEntryRequest = z.infer<
   typeof BudgetEntryExternalSchema
 >[];
+
+export type BudgetEntryTransfer = z.infer<typeof BudgetEntryTransferSchema>;
 
 export type BudgetEntryResponse = MapObjectDatesToStrings<BudgetEntry>;
 export type AllocateIncomeBudgetEntryResponse = BudgetEntryResponse;
