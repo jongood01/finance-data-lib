@@ -10,10 +10,16 @@ export const budgetEntryExternalBase = {
     required_error: "Budget id is required",
     invalid_type_error: "Budget id must be a string",
   }),
-  transactionId: z.string({
-    required_error: "Transaction id is required",
-    invalid_type_error: "Transaction id must be a string",
-  }),
+  transactionId: z
+    .string({
+      invalid_type_error: "Transaction id must be a string or null",
+    })
+    .nullable(),
+  siblingId: z
+    .string({
+      invalid_type_error: "Budget entry sibling id must be a string or null",
+    })
+    .nullable(),
   description: z
     .string({
       required_error: "Budget entry description is required",
