@@ -55,6 +55,8 @@ export const transactionBase = {
   amountAllocatedExpense: z.number().nonnegative().max(999999).step(0.01, {
     message: "Amount allocated expense must be a valid decimal",
   }),
+  allocatedIncomeBudgetIds: z.array(z.string()),
+  allocatedExpenseBudgetIds: z.array(z.string()),
   transactionDate: z.date({
     required_error: "Transaction date at must be a valid date",
   }),
@@ -85,11 +87,9 @@ export const transactionSummary = {
     .nonnegative()
     .max(999999)
     .step(0.01, { message: "Amount out must be a valid decimal" }),
-  transactionDate: z
-    .string()
-    .datetime({
-      message: "Transaction summary date at must be a valid date string",
-    }),
+  transactionDate: z.string().datetime({
+    message: "Transaction summary date at must be a valid date string",
+  }),
   notes: z
     .string({
       invalid_type_error: "Transaction summary notes must be a string",
