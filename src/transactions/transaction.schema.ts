@@ -139,3 +139,8 @@ export type IndexedTransaction = {
 };
 
 export type IndexedTransactionResult = IndexedTransaction[];
+
+export interface TransactionWithBudgetInfo extends Transaction {
+  color: string;
+  budgetLabelList: { name: string; color: string }[];
+}
