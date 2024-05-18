@@ -4,6 +4,7 @@ import {
   WithObjectId,
 } from "../core/index.ts";
 import { z } from "../deps.ts";
+import { Transaction } from "../transactions/transaction.schema.ts";
 
 const accountType = z.enum(["Chequing", "Savings", "Credit Card", "Mortgage"]);
 
@@ -68,3 +69,9 @@ export type CreateAccountResponse = Account;
 export type CreateAccountRequest = z.infer<typeof AccountExternalSchema>;
 export type AccountResponse = MapObjectDatesToStrings<Account>;
 export type UpdateAccountRequest = z.infer<typeof UpdateAccountRequestSchema>;
+export type AccountUnassignedTransactionsResponse = {
+  accountName: string;
+  accountSlug: string;
+  total: number;
+  transactions: Transaction[];
+};
