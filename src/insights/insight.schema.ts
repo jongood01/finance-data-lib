@@ -33,6 +33,12 @@ const insightBase = {
     })
     .nullable(),
   complete: z.boolean(),
+  type: z.enum([
+    "over-budget",
+    "near-budget",
+    "spending-change",
+    "auto-assign",
+  ]),
 };
 
 export const InsightSchema = EntitySchema.extend(insightBase).strict();
