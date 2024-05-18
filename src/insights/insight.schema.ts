@@ -1,4 +1,4 @@
-import { EntitySchema } from "../core/index.ts";
+import { EntitySchema, WithObjectId } from "../core/index.ts";
 import { z } from "../deps.ts";
 
 const insightBase = {
@@ -36,4 +36,5 @@ const insightBase = {
 };
 
 export const InsightSchema = EntitySchema.extend(insightBase).strict();
-export type Insight = z.infer<typeof InsightSchema>;
+type RawInsight = z.infer<typeof InsightSchema>;
+export type Insight = RawInsight & WithObjectId;
