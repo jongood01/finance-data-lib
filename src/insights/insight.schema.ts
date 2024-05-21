@@ -32,7 +32,11 @@ const insightBase = {
       invalid_type_error: "Insight action label must be a string",
     })
     .nullable(),
-  complete: z.boolean(),
+  dismissed: z.boolean(),
+  itemId: z.string({
+    required_error: "Item id is required",
+    invalid_type_error: "Item id needs to be a valid string",
+  }),
   type: z.enum(["over-budget", "near-budget", "spending-change"]),
 };
 
