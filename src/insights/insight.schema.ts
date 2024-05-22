@@ -1,6 +1,8 @@
 import { EntitySchema, WithObjectId } from "../core/index.ts";
 import { z } from "../deps.ts";
 
+const type = z.enum(["over-budget", "near-budget", "spending-change"]);
+
 const insightBase = {
   title: z
     .string({
@@ -37,9 +39,10 @@ const insightBase = {
     required_error: "Item id is required",
     invalid_type_error: "Item id needs to be a valid string",
   }),
-  type: z.enum(["over-budget", "near-budget", "spending-change"]),
+  type,
 };
 
 export const InsightSchema = EntitySchema.extend(insightBase).strict();
 type RawInsight = z.infer<typeof InsightSchema>;
 export type Insight = RawInsight & WithObjectId;
+export type InsightType = z.infer<typeof type>;
