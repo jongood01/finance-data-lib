@@ -139,6 +139,10 @@ export type IndexedTransaction = {
 };
 
 export type IndexedTransactionResult = IndexedTransaction[];
+export type TransactionAutoAssign = {
+  transaction: Transaction;
+  budgetId: string;
+};
 
 export interface TransactionWithBudgetInfo extends Transaction {
   color: string;
