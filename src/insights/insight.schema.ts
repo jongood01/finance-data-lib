@@ -1,7 +1,12 @@
 import { EntitySchema, WithObjectId } from "../core/index.ts";
 import { z } from "../deps.ts";
 
-const type = z.enum(["over-budget", "near-budget", "spending-change"]);
+const type = z.enum([
+  "over-budget",
+  "near-budget",
+  "spending-change",
+  "auto-assign-transactions",
+]);
 
 const insightBase = {
   title: z
