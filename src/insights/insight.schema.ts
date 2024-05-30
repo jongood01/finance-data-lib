@@ -6,6 +6,7 @@ const type = z.enum([
   "near-budget",
   "spending-change",
   "auto-assign-transactions",
+  "adjust-budget",
 ]);
 
 const insightBase = {

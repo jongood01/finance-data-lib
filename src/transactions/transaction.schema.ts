@@ -43,6 +43,11 @@ export const transactionExternalBase = {
       message: "Transaction notes must be no longer than 500 characters long",
     })
     .nullable(),
+  siblingId: z
+    .string({
+      invalid_type_error: "Transaction sibling id must be a string or null",
+    })
+    .nullable(),
 };
 
 export const transactionBase = {
