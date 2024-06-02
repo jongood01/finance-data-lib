@@ -46,6 +46,7 @@ const goalBase = {
 };
 
 export const GoalSchema = EntitySchema.extend(goalBase).strict();
+export const GoalBaseSchema = z.object(goalExternalBase).strict();
 export const CreateGoalRequestSchema = z.object(goalExternalBase).strict();
 export const UpdateGoalRequestSchema = z
   .object({
@@ -59,5 +60,6 @@ export const UpdateGoalRequestSchema = z
 type RawGoal = z.infer<typeof GoalSchema>;
 export type Goal = RawGoal & WithObjectId;
 export type GoalType = z.infer<typeof type>;
+export type GoalBase = z.infer<typeof GoalBaseSchema>;
 export type CreateGoalRequest = z.infer<typeof CreateGoalRequestSchema>;
 export type UpdateGoalRequest = z.infer<typeof UpdateGoalRequestSchema>;
