@@ -7,7 +7,6 @@ const type = z.enum([
   "spend-amount",
   "spend-target",
 ]);
-const amountType = z.enum(["$", "%"]);
 
 const goalExternalBase = {
   amount: z
@@ -15,24 +14,34 @@ const goalExternalBase = {
     .nonnegative()
     .max(999999)
     .step(0.01, { message: "Amount must be a valid decimal" }),
-  amountType,
+  description: z.string({
+    required_error: "Description is required",
+    invalid_type_error: "Description needs to be a valid string",
+  }),
   goalDate: z
     .string()
-    .datetime({ message: "Goal date at must be a valid date string" }),
-  budgetId: z
-    .string({
-      required_error: "Budget id is required",
-      invalid_type_error: "Budget id needs to be a valid string",
-    })
+    .datetime({ message: "Goal date at must be a valid date string" })
+    .nullable(),
+  budgetId: z.string({
+    required_error: "Budget id is required",
+    invalid_type_error: "Budget id needs to be a valid string",
+  }),
+  periodDays: z
+    .number()
+    .nonnegative()
+    .min(1, { message: "Period days must be at least 1" })
+    .max(365, { message: "Period days must be a year or less" })
     .nullable(),
   type,
 };
 
 const goalBase = {
   ...goalExternalBase,
-  goalDate: z.date({
-    required_error: "Goal date must be a valid date",
-  }),
+  goalDate: z
+    .date({
+      required_error: "Goal date must be a valid date",
+    })
+    .nullable(),
   complete: z.boolean(),
   completeAmount: z
     .number()
