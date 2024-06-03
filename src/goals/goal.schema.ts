@@ -20,8 +20,7 @@ const goalExternalBase = {
   }),
   goalDate: z
     .string()
-    .datetime({ message: "Goal date at must be a valid date string" })
-    .nullable(),
+    .datetime({ message: "Goal date at must be a valid date string" }),
   budgetId: z.string({
     required_error: "Budget id is required",
     invalid_type_error: "Budget id needs to be a valid string",
@@ -29,9 +28,8 @@ const goalExternalBase = {
   periodDays: z
     .number()
     .nonnegative()
-    .min(1, { message: "Period days must be at least 1" })
-    .max(365, { message: "Period days must be a year or less" })
-    .nullable(),
+    .min(0, { message: "Period days must be at least 0" })
+    .max(365, { message: "Period days must be a year or less" }),
   type,
 };
 
