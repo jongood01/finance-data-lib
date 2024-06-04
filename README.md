@@ -9,4 +9,4 @@ Set the below in the user specific `~/.npmrc` file:
 ## Making changes
 
 When the code changes are complete; make sure you commit and push them then run
-`export VERSION=0.1.1 && deno task build:deploy` where the env variable is the new version number.
+`export VERSION=1.6.7 && deno task build:deploy` where the env variable is the new version number.

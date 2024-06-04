@@ -1,4 +1,8 @@
-import { EntitySchema, WithObjectId } from "../core/index.ts";
+import {
+  EntitySchema,
+  MapObjectDatesToStrings,
+  WithObjectId,
+} from "../core/index.ts";
 import { z } from "../deps.ts";
 
 const type = z.enum([
@@ -70,5 +74,6 @@ export type Goal = RawGoal & WithObjectId;
 export type GoalType = z.infer<typeof type>;
 export type GoalExternalBase = z.infer<typeof GoalExternalBaseSchema>;
 export type GoalBase = z.infer<typeof GoalBaseSchema>;
+export type GoalResponse = MapObjectDatesToStrings<Goal>;
 export type CreateGoalRequest = z.infer<typeof CreateGoalRequestSchema>;
 export type UpdateGoalRequest = z.infer<typeof UpdateGoalRequestSchema>;
